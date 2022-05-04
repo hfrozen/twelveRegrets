@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CE803892-F7E5-42E8-828A-26573E83527E}</ProjectGuid>
+    <RootNamespace>Dts</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="res\Check.bmp" />
+    <None Include="res\Dts.ico" />
+    <None Include="res\Dts.rc2" />
+    <None Include="res\Head.bmp" />
+    <None Include="res\LLeds.bmp" />
+    <None Include="res\Train\acloff.bmp" />
+    <None Include="res\Train\aclon.bmp" />
+    <None Include="res\train\bitmap1.bmp" />
+    <None Include="res\train\bitmap2.bmp" />
+    <None Include="res\Train\body.bmp" />
+    <None Include="res\Train\bodyl.bmp" />
+    <None Include="res\Train\bodyr.bmp" />
+    <None Include="res\Train\corridor.bmp" />
+    <None Include="res\Train\dbpswn.bmp" />
+    <None Include="res\Train\dbpswo.bmp" />
+    <None Include="res\Train\dcloff.bmp" />
+    <None Include="res\Train\dclon.bmp" />
+    <None Include="res\Train\demehn.bmp" />
+    <None Include="res\Train\demeho.bmp" />
+    <None Include="res\Train\demhn.bmp" />
+    <None Include="res\Train\demho.bmp" />
+    <None Include="res\Train\demihn.bmp" />
+    <None Include="res\Train\demiho.bmp" />
+    <None Include="res\Train\doorb.bmp" />
+    <None Include="res\Train\doorc.bmp" />
+    <None Include="res\Train\dooro.bmp" />
+    <None Include="res\Train\panbp.bmp" />
+    <None Include="res\Train\pandn.bmp" />
+    <None Include="res\Train\panup.bmp" />
+    <None Include="res\Train\sdoorf.bmp" />
+    <None Include="res\Train\sdoorn.bmp" />
+    <None Include="res\Train\wheel.bmp" />
+    <None Include="res\Train\wheelu.bmp" />
+    <None Include="res\UnCheck.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AidChkList.h" />
+    <ClInclude Include="AidInner.h" />
+    <ClInclude Include="AidLed.h" />
+    <ClInclude Include="AidStatic.h" />
+    <ClInclude Include="AidTexts.h" />
+    <ClInclude Include="Body.h" />
+    <ClInclude Include="Cabin.h" />
+    <ClInclude Include="Car.h" />
+    <ClInclude Include="ClientSocket.h" />
+    <ClInclude Include="Cook.h" />
+    <ClInclude Include="Dashb.h" />
+    <ClInclude Include="Dato.h" />
+    <ClInclude Include="Ddcu.h" />
+    <ClInclude Include="Decu.h" />
+    <ClInclude Include="Dhvac.h" />
+    <ClInclude Include="Doc.h" />
+    <ClInclude Include="Dpau.h" />
+    <ClInclude Include="Dpis.h" />
+    <ClInclude Include="Dsiv.h" />
+    <ClInclude Include="Dtrs.h" />
+    <ClInclude Include="Dts.h" />
+    <ClInclude Include="DtsDlg.h" />
+    <ClInclude Include="Dv3f.h" />
+    <ClInclude Include="Intro.h" />
+    <ClInclude Include="Leds.h" />
+    <ClInclude Include="Log.h" />
+    <ClInclude Include="Panel.h" />
+    <ClInclude Include="Port.h" />
+    <ClInclude Include="ReferD.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="Rule.h" />
+    <ClInclude Include="ServerSocket.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="Tcm.h" />
+    <ClInclude Include="Tools.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AidChkList.cpp" />
+    <ClCompile Include="AidInner.cpp" />
+    <ClCompile Include="AidLed.cpp" />
+    <ClCompile Include="AidStatic.cpp" />
+    <ClCompile Include="AidTexts.cpp" />
+    <ClCompile Include="Body.cpp" />
+    <ClCompile Include="Cabin.cpp" />
+    <ClCompile Include="Car.cpp" />
+    <ClCompile Include="ClientSocket.cpp" />
+    <ClCompile Include="Cook.cpp" />
+    <ClCompile Include="Dashb.cpp" />
+    <ClCompile Include="Dato.cpp" />
+    <ClCompile Include="Ddcu.cpp" />
+    <ClCompile Include="Decu.cpp" />
+    <ClCompile Include="Dhvac.cpp" />
+    <ClCompile Include="Doc.cpp" />
+    <ClCompile Include="Dpau.cpp" />
+    <ClCompile Include="Dpis.cpp" />
+    <ClCompile Include="Dsiv.cpp" />
+    <ClCompile Include="Dtrs.cpp" />
+    <ClCompile Include="Dts.cpp" />
+    <ClCompile Include="DtsDlg.cpp" />
+    <ClCompile Include="Dv3f.cpp" />
+    <ClCompile Include="Intro.cpp" />
+    <ClCompile Include="Leds.cpp" />
+    <ClCompile Include="Log.cpp" />
+    <ClCompile Include="Panel.cpp" />
+    <ClCompile Include="Port.cpp" />
+    <ClCompile Include="Rule.cpp" />
+    <ClCompile Include="ServerSocket.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Tcm.cpp" />
+    <ClCompile Include="Tools.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Dts.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="Dts.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
