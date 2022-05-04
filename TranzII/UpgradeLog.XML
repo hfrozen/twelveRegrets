@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Tranzx">
+</Property><Property Name="솔루션 파일" Value="D:\Project10\Tranzx\Tranzx.sln">
+</Property><Property Name="사용자 옵션 파일" Value="D:\Project10\Tranzx\Tranzx.suo">
+</Property><Property Name="Date" Value="2016년 1월 27일 수요일">
+</Property><Property Name="Time" Value="오후 14:31">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="Tranzx.sln" Description="파일을 D:\Project10\Tranzx\Tranzx.sln.old(으)로 백업했습니다.">
+</Event><Event ErrorLevel="0" Project="" Source="Tranzx.suo" Description="파일을 D:\Project10\Tranzx\Tranzx.suo.old(으)로 백업했습니다.">
+</Event><Event ErrorLevel="0" Project="Tranzx" Source="Tranzx\Tranzx.vcproj" Description="Converting project file 'D:\Project10\Tranzx\Tranzx\Tranzx.vcproj'.">
+</Event><Event ErrorLevel="1" Project="Tranzx" Source="Tranzx\Tranzx.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="Tranzx" Source="Tranzx\Tranzx.vcproj" Description="Done converting to new project file 'D:\Project10\Tranzx\Tranzx\Tranzx.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="Tranzx" Source="Tranzx\Tranzx.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="Tranzx.sln" Description="솔루션을 변환했습니다.">
+</Event><Event ErrorLevel="3" Project="" Source="Tranzx.sln" Description="Converted">
+</Event></UpgradeLog>

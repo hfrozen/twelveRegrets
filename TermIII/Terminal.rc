@@ -1,0 +1,384 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 한국어(대한민국) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 18, 1\r\n"
+    "#pragma code_page(949)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\Terminal.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.kor\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\Terminal.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG 0, 0, 226, 33
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "통신 정보"
+FONT 9, "굴림"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,6,12,20,20
+    LTEXT           "Terminal 버전 1.0",IDC_STATIC,35,5,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2001 SaintKim Co.,",IDC_STATIC,35,20,119,8
+    DEFPUSHBUTTON   "확인",IDOK,173,2,50,14,WS_GROUP
+END
+
+IDD_TERMINAL_DIALOG DIALOGEX 0, 0, 319, 349
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "통신"
+FONT 9, "굴림", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_TX,2,321,263,12,NOT WS_BORDER
+    DEFPUSHBUTTON   "끝내기",IDOK,268,320,50,14
+    CTEXT           "제어문자 SOH%1 STX%2 ETX%3 EOT%4 ENQ%5 ACK%6 NAK%7 CR%8 LF%9 SUM%0",IDC_STATIC,7,337,305,12,SS_CENTERIMAGE
+    CONTROL         "",IDC_EDIT_RX,"RichEdit20A",ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY | WS_VSCROLL | WS_TABSTOP,2,2,314,316
+END
+
+IDD_OPEN_DIALOG DIALOGEX 0, 0, 141, 237
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "채널"
+FONT 9, "굴림", 0, 0, 0x0
+BEGIN
+    COMBOBOX        IDC_COMBO_PORT,7,15,56,59,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_BPS,78,14,56,65,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "열기",IDOK,3,220,50,14
+    PUSHBUTTON      "취소",IDCANCEL,88,220,50,14
+    CONTROL         "8 비트",IDC_RADIO_DATAS8,"Button",BS_AUTORADIOBUTTON | WS_GROUP,13,54,45,14
+    CONTROL         "7 비트",IDC_RADIO_DATAS7,"Button",BS_AUTORADIOBUTTON,13,70,45,14
+    CONTROL         "없음",IDC_RADIO_NONS,"Button",BS_AUTORADIOBUTTON | WS_GROUP,83,54,47,14
+    CONTROL         "홀수",IDC_RADIO_ODDS,"Button",BS_AUTORADIOBUTTON,83,70,45,14
+    CONTROL         "짝수",IDC_RADIO_EVENS,"Button",BS_AUTORADIOBUTTON,83,84,45,14
+    CONTROL         "1 비트",IDC_RADIO_STOP1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,13,110,45,14
+    CONTROL         "2 비트",IDC_RADIO_STOP2,"Button",BS_AUTORADIOBUTTON,13,124,45,14
+    CONTROL         "Disable",IDC_RADIO_DISABLE_DTR,"Button",BS_AUTORADIOBUTTON | WS_GROUP,13,164,45,14
+    CONTROL         "Enable",IDC_RADIO_ENABLE_DTR,"Button",BS_AUTORADIOBUTTON,13,179,45,14
+    CONTROL         "Handshake",IDC_RADIO_HANDSHAKE_DTR,"Button",BS_AUTORADIOBUTTON,13,194,46,14
+    CONTROL         "Disable",IDC_RADIO_DISABLE_RTS,"Button",BS_AUTORADIOBUTTON | WS_GROUP,83,150,45,14
+    CONTROL         "Enable",IDC_RADIO_ENABLE_RTS,"Button",BS_AUTORADIOBUTTON,83,164,45,14
+    CONTROL         "Handshake",IDC_RADIO_HANDSHAKE_RTS,"Button",BS_AUTORADIOBUTTON,83,180,46,14
+    CONTROL         "Toggle",IDC_RADIO_TOGGLE_RTS,"Button",BS_AUTORADIOBUTTON,83,195,45,14
+    GROUPBOX        "연결",IDC_STATIC,3,4,65,30
+    GROUPBOX        "속도",IDC_STATIC,73,4,65,30
+    GROUPBOX        "데이터 길이",IDC_STATIC,3,44,65,45
+    GROUPBOX        "마지막 비트",IDC_STATIC,3,100,65,45
+    GROUPBOX        "패리티",IDC_STATIC,73,40,65,65
+    GROUPBOX        "DTR 제어",IDC_STATIC,3,154,65,60
+    GROUPBOX        "RTS 제어",IDC_STATIC,73,140,65,75
+END
+
+IDD_CTRLCHAR_DIALOG DIALOG 0, 0, 98, 143
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "제어 문자"
+FONT 9, "굴림"
+BEGIN
+    EDITTEXT        IDC_EDIT_SOH,45,2,50,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_STX,45,17,50,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_ETX,45,32,50,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_EOT,45,47,50,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_ENQ,45,62,50,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_ACK,45,77,50,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_NAK,45,92,50,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "입력",IDOK,2,125,45,14
+    PUSHBUTTON      "취소",IDCANCEL,50,125,45,14
+    LTEXT           "SOH\t01h",IDC_STATIC,2,2,42,14,SS_CENTERIMAGE
+    LTEXT           "STX\t02h",IDC_STATIC,2,17,42,14,SS_CENTERIMAGE
+    LTEXT           "ETX\t03h",IDC_STATIC,2,32,42,14,SS_CENTERIMAGE
+    LTEXT           "EOT\t04h",IDC_STATIC,2,47,42,14,SS_CENTERIMAGE
+    LTEXT           "ENQ\t05h",IDC_STATIC,2,62,42,14,SS_CENTERIMAGE
+    LTEXT           "ACK\t06h",IDC_STATIC,2,77,42,14,SS_CENTERIMAGE
+    LTEXT           "NAK\t15h",IDC_STATIC,2,92,42,14,SS_CENTERIMAGE
+    LTEXT           "SUM",IDC_STATIC,2,107,42,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_SUM,45,107,50,14,ES_AUTOHSCROLL
+END
+
+IDD_CSUM_DIALOG DIALOGEX 0, 0, 123, 129
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "검사"
+FONT 9, "굴림", 0, 0, 0x0
+BEGIN
+    PUSHBUTTON      "입력",IDOK,3,112,50,14
+    PUSHBUTTON      "취소",IDCANCEL,71,112,50,14
+    CONTROL         "ADD",IDC_RADIO_ADDSUM,"Button",BS_AUTORADIOBUTTON | WS_GROUP,12,12,41,14
+    CONTROL         "XOR",IDC_RADIO_XORSUM,"Button",BS_AUTORADIOBUTTON,12,27,41,14
+    CONTROL         "XOR + 1",IDC_RADIO_XORP1SUM,"Button",BS_AUTORADIOBUTTON,12,42,41,14
+    CONTROL         "XOR - 1",IDC_RADIO_XORM1SUM,"Button",BS_AUTORADIOBUTTON,12,57,41,14
+    CONTROL         "ASCII",IDC_RADIO_ASCIISUM,"Button",BS_AUTORADIOBUTTON | WS_GROUP,76,12,36,14
+    CONTROL         "Binary",IDC_RADIO_BINSUM,"Button",BS_AUTORADIOBUTTON,76,28,36,14
+    CONTROL         "Byte",IDC_RADIO_BYTESUM,"Button",BS_AUTORADIOBUTTON | WS_GROUP,76,62,36,14
+    CONTROL         "Word",IDC_RADIO_WORDSUM,"Button",BS_AUTORADIOBUTTON,76,78,36,14
+    GROUPBOX        "방식",IDC_STATIC,2,2,60,75
+    GROUPBOX        "형식",IDC_STATIC,66,2,55,45
+    GROUPBOX        "길이",IDC_STATIC,66,52,55,45
+    CONTROL         "시간 표시",IDC_CHECK_TIME,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,3,81,49,11
+    CONTROL         "ASCII->HEX",IDC_CHECK_NUMBER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,3,96,49,11
+END
+
+IDD_MACRO_DIALOG DIALOG 0, 0, 187, 225
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "매크로"
+FONT 9, "굴림"
+BEGIN
+    PUSHBUTTON      "추가(&N)",IDC_MACRO_NEW,2,205,44,14
+    PUSHBUTTON      "제거(&D)",IDC_MACRO_DEL,47,205,44,14
+    DEFPUSHBUTTON   "입력",IDC_MACRO_END,141,205,44,14
+    CONTROL         "List1",IDC_MACRO_LIST,"SysListView32",LVS_REPORT | WS_BORDER | WS_TABSTOP,2,2,183,199
+END
+
+IDD_NEW_MACRO_DIALOG DIALOG 0, 0, 187, 37
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "매크로 추가"
+FONT 9, "굴림"
+BEGIN
+    EDITTEXT        IDC_MACRO_NAME_EDIT,21,3,80,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_MACRO_STRING_EDIT,21,20,110,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "입력",IDOK,134,3,50,14
+    PUSHBUTTON      "취소",IDCANCEL,134,20,50,14
+    LTEXT           "키",IDC_STATIC,3,3,15,14,SS_CENTERIMAGE
+    LTEXT           "내용",IDC_STATIC,3,20,15,14,SS_CENTERIMAGE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041204B0"
+        BEGIN
+            VALUE "FileDescription", "Terminal MFC 응용 프로그램"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "Terminal"
+            VALUE "LegalCopyright", "Copyright (C) 2001"
+            VALUE "OriginalFilename", "Terminal.EXE"
+            VALUE "ProductName", "Terminal 응용 프로그램"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x412, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 219
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 26
+    END
+
+    IDD_TERMINAL_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 312
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 342
+    END
+
+    IDD_OPEN_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 134
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 230
+    END
+
+    IDD_CTRLCHAR_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 91
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 136
+    END
+
+    IDD_CSUM_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 116
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 122
+    END
+
+    IDD_MACRO_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 218
+    END
+
+    IDD_NEW_MACRO_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 30
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU_TERMINAL MENU
+BEGIN
+    POPUP "파일(&F)"
+    BEGIN
+        MENUITEM "열기(&O)\tCtrl+O",              IDC_OPEN
+        MENUITEM SEPARATOR
+        MENUITEM "종료(&X)\tCtrl+X",              ID_APP_EXIT
+    END
+    POPUP "편집(&E)"
+    BEGIN
+        MENUITEM "제어 문자(&C)\tCtrl+C",           IDC_CONTROL_CHAR
+        MENUITEM "Status(&S)\tCtrl+S",          IDC_CHKSUM
+        MENUITEM SEPARATOR
+        MENUITEM "받는 창 지우기(&D)\tCtrl+D",        IDC_CLEAR_RX
+    END
+    POPUP "매크로(&M)"
+    BEGIN
+        MENUITEM "작성(&E)\tCtrl+E",              IDC_MACRO_EDIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_ACCELERATOR ACCELERATORS
+BEGIN
+    "C",            IDC_CONTROL_CHAR,       VIRTKEY, CONTROL, NOINVERT
+    "E",            IDC_MACRO_EDIT,         VIRTKEY, CONTROL, NOINVERT
+    "O",            IDC_OPEN,               VIRTKEY, CONTROL, NOINVERT
+    "S",            IDC_CHKSUM,             VIRTKEY, CONTROL, NOINVERT
+    "X",            ID_APP_EXIT,            VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_ABOUTBOX            "Terminal 정보(&A)..."
+END
+
+#endif    // 한국어(대한민국) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE 18, 1
+#pragma code_page(949)
+#endif //_WIN32
+#include "res\Terminal.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.kor\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

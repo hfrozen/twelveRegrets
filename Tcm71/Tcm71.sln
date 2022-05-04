@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tcm71", "Tcm71\Tcm71.vcxproj", "{54543A12-9B3F-4AFA-9B41-3EB2E8D28F5D}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupTcm71", "..\SetupTcm71\SetupTcm71.vdproj", "{7A463F4F-DE54-44D2-A0C2-038D01043C13}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54543A12-9B3F-4AFA-9B41-3EB2E8D28F5D}.Debug|Win32.ActiveCfg = Release|Win32
+		{54543A12-9B3F-4AFA-9B41-3EB2E8D28F5D}.Debug|Win32.Build.0 = Release|Win32
+		{54543A12-9B3F-4AFA-9B41-3EB2E8D28F5D}.Release|Win32.ActiveCfg = Release|Win32
+		{54543A12-9B3F-4AFA-9B41-3EB2E8D28F5D}.Release|Win32.Build.0 = Release|Win32
+		{7A463F4F-DE54-44D2-A0C2-038D01043C13}.Debug|Win32.ActiveCfg = Debug
+		{7A463F4F-DE54-44D2-A0C2-038D01043C13}.Release|Win32.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,42 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Terminal - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1.COR\LOCALS~1\Temp\RSP4E2.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/Terminal.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\AD2004\VcProg\Terminal2\TerminalDlg.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1.COR\LOCALS~1\Temp\RSP4E2.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1.COR\LOCALS~1\Temp\RSP4E3.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/Terminal.pdb" /debug /machine:I386 /out:"Debug/Terminal.exe" /pdbtype:sept 
+.\Debug\CtrlChar.obj
+.\Debug\MacroEdit.obj
+.\Debug\NewMacro.obj
+.\Debug\Open.obj
+.\Debug\Port.obj
+.\Debug\StdAfx.obj
+.\Debug\Sum.obj
+.\Debug\Terminal.obj
+.\Debug\TerminalDlg.obj
+.\Debug\ViewEdit.obj
+.\Debug\Terminal.res
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1.COR\LOCALS~1\Temp\RSP4E3.tmp"
+<h3>Output Window</h3>
+Compiling...
+TerminalDlg.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+Terminal.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
