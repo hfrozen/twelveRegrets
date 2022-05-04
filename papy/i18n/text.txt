@@ -1,0 +1,32 @@
+한국 ko
+영어 en
+1.스페인 es
+2.프랑스 fr
+3.독일 de
+4.이탈리아 it
+5.일본 ja
+6.중국 zh-chs
+
+Multi NotePad
+"appTitle:": "MultiNotePad",
+"note:":"",
+"notes:":"",
+"pad:":"",
+"notepad:":"",
+"welcome:":"",
+"startNotepad:":"",
+"typeToSearch:":"",
+"notFound:":"",
+"newNote:":"",
+"addNote:":"",
+"deleteNote:":"",
+"eraseNote:":"",
+"shareNote:":"",
+"areYouSure:":"",
+"picture:":"",
+"selectPicture:":"",
+"selectedPicture:":"",
+"camera:":"",
+"yes:":"",
+"no:":"",
+"cancel:":"",

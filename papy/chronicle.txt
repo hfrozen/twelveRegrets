@@ -1,0 +1,80 @@
+*번역이 필요한 낱말
+예
+아니오
+*홈의 타이틀
+조각
+*홈에서 첫 화면 타이틀
+조각집 시작
+*에디터의 타이틀
+조각
+환영합니다
+시작하기
+
+찾을 글자 입력
+조각 집
+조각 쓰기
+
+사진
+사진 선택
+샘플 사진
+*리스트에서 스냅샷을 기다리는 동안
+please wait...:
+카메라
+*카메라 설정
+wait...:
+*카메라는 많다.. 글자가...
+
+예
+아니오
+조각
+조각집 시작
+조각
+환영합니다
+시작하기
+찾을 글자 입력
+조각 집
+조각 쓰기
+사진
+사진 선택
+샘플 사진
+카메라
+
+한국 ko
+영어 en
+1.스페인 es
+2.프랑스 fr
+3.독일 de
+4.이탈리아 it
+5.일본 ja
+6.중국 zh-chs
+
+붓글씨를 위해서는
+1. 터치했을 때 번저나가는 기법이 필요하다
+2. 가속에 맞춰 두께를 구하는 기법이 필요하다
+2.에 대해...
+	ScaleUpdateDetails.focalPointDelta를 가지고 Velocity를 구할 수 있다.
+	class _PathTrack =>
+	그릴 때 update()는 좌표만 기록한다.
+	add() {
+		... _paths.add(pathTrackEntry);
+	}
+	List<PathTrackEntry> _paths;
+  	PathTrackEntry(this.x, this.y, this.color,
+      	this.paintBlendMode, this.paintThickness);
+	더할 때는 좌표와 두께등을 같이 더한다.
+
+  	List<Point> lineToList = [];
+	  void update(Offset nextPoint, int compressionLevel) {
+	  		... _paths.last.lineToList.add(Point(nextPoint.dx, nextPoint.dy));
+	덧붙일 때는 paths의 마지막에서 좌표만 더한다.
+
+	void draw(Canvas canvas, Size size) {   // PathTrack
+	 	... canvas.drawPath(old.key, old.value);
+	void drawPath(Path path, Paint paint);
+	캔버스의 drawPath는 좌표와 페인트가 있어야한다.
+
+	캔버스에서 좌표는 리스트여서 연속적인 값이 되지만 페인트는 고정 값이다.
+	그러면 페인트가 변하면(두께가 바뀌면) 함수를 불러야 한다.
+	속도가 느려지나?
+	또한 위에서 path를 더할 때 두께도 같이 들어갈 수 있어야 한다.
+	offset만 가지고서는 되지 않는다.
