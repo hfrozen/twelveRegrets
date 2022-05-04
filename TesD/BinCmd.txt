@@ -1,0 +1,113 @@
+// binary format command
+// 1st byte: command length
+// 2nd byte: 0x01~0x1f-common, 0x10~0x1f-comm., 0x20~0x2f-di, 0x30~0x3f-do, 0x40~0x4f-pwm
+// 3nd byte: high nibble fix to 5, low nibble is card address, without comm.
+//
+//	* common command
+//------------------------------------------------------------------------------
+//	- card reset
+//	01 01						|	-					;
+//------------------------------------------------------------------------------
+//	card type and id report
+//	01 02						|	02 02 nm				|	n: type, m: addr
+//------------------------------------------------------------------------------
+//
+//	* communication command
+//------------------------------------------------------------------------------
+//	- card reset
+//	01 10						|	-
+//------------------------------------------------------------------------------
+//	- initial
+////	06 11 5m di aa aa xx		|	-						|	m: channel(0~7)
+////	di -	b7: report to host when rx(1) / host's cmd[0x15](0)
+////			b6:	tx when rx(1) / host's cmd[0x13](0)
+////			b5: at ato mode - cycle count<b[0],b[1]> increase inhibit(1) / normal(0)
+////			b4: reserve
+////			lsb: device id
+////	aa aa - 16bit address, LSB/MSB
+////	xx - msb:	0- async.,	1- async.&bcc,	2- async&crc,	3- sync.
+////	In async&crc, tx field has crc 2 byte!!!
+////	xx - lsb:	0- 9600,	1- 19200,	2- 38400,	3- 115200
+////				4- 256k,	5- 512k,	6- 1M,		7- 1.5M
+//
+//	* Modify
+//	06 11(12) 5m al ah di xx		|	-						|	m: channel(0~7)
+//	11 - config & scc initial
+//	12 - only config
+//
+//	aa aa			- 16bit address, LSB/MSB
+//
+//	di -	b7:		dr3, disable respond (at dcu mode).
+//			b6:		dr2, disable respond (at dcu mode).
+//			b5:		dr1, disable respond (at dcu mode).
+//			b4:		dr0, disable respond.
+//			lsb:	device id
+//
+//	xx -	b7:		rrm(receive report motive), report received frames on every receive(1) or host request(0, cmd is 0x15).
+//			b6:		cci(cycle count inhibit), at ato mode, cycle count increase inhibit(1) / enable(0).
+//			b5-b4:	mode,	00-async.,	01-async.&bcc,	2-async&crc,	3-sync.
+//			b3-b0:	bps,	0- 9600,	1- 19200,	2- 38400,	3- 115200
+//							4- 256k,	5- 512k,	6- 1M,		7- 1.5M
+//
+//------------------------------------------------------------------------------
+//	- status report
+//	02 13 5m					|	06 12 5m aa aa di xx
+//------------------------------------------------------------------------------
+//	- send
+//	vv 14 5m ~~~~~~~~~			|	-
+//------------------------------------------------------------------------------
+//	- reserve send frame
+//	vv 15 5m					|	-
+//------------------------------------------------------------------------------
+//	- receive report
+//	02 16 5m					|	vv 15 5m ~~~~~~~~~
+//------------------------------------------------------------------------------
+//
+//	* digital input command
+//------------------------------------------------------------------------------
+//	- card reset
+//	02 20 5m					|	-						|	m: addr
+//------------------------------------------------------------------------------
+//	- status report
+//	02 21 5m					|	05 21 5m kk kk kk		|	kkkkkk: 24bit input
+//------------------------------------------------------------------------------
+//	- changed status report
+//	02 22 5m					|	02 22 5m				|
+//	if changed then respond by 21, otherwise respond by 22(not changed).
+//------------------------------------------------------------------------------
+//
+//	* digital output command
+//------------------------------------------------------------------------------
+//	- card reset
+//	02 30 5m					|	-						|	m: addr
+//------------------------------------------------------------------------------
+//	- status report
+//	02 31 5m					|	05 31 5m kk kk kk		|	kkkkkk: 24bit output
+//------------------------------------------------------------------------------
+//	- changed status report
+//	02 32 5m					|	02 32 5m				|
+//	if changed then respond by 31, otherwise respond by 32(not changed).
+//------------------------------------------------------------------------------
+//	- all bits output
+//	05 33 5m kk kk kk			|	-
+//------------------------------------------------------------------------------
+//	- selected bit output
+//	04 34 5m jj 0u				|	-						| #jj bit on(u=1)/off(u=0)
+//------------------------------------------------------------------------------
+//
+//	* pwm command
+//------------------------------------------------------------------------------
+//	- card reset
+//	02 40 5m					|	-						| m: addr
+//------------------------------------------------------------------------------
+//	- status report
+//	03 41 5m 0j					|	05 41 5m 0j kk kk		| #j channel report
+//------------------------------------------------------------------------------
+//	- change status report
+//	03 42 5m 0j					|	03 42 5m 0j				|
+//	if changed then respond by 41, otherwise respond by 42(not changed).
+//------------------------------------------------------------------------------
+//	- output
+//	05 43 5m 0j kk kk			|	-
+//------------------------------------------------------------------------------
+//
