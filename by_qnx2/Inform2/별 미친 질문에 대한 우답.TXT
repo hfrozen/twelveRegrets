@@ -1,0 +1,162 @@
+// 추가되는 데이터의 수집 부분
+
+void CArch::BuildFullSda()
+{
+	for (int n = 0; n < CID_MAX; n ++) {	// CAUSION!!! not pPaper->GetLength()
+		if (n == 0 || n == 5 || n == 9) {
+			if (n != 5)	BuildAvsSda(n);
+			BuildSivSda(n);
+		}
+		else if (n == 1 || n == 2 || n == 4 || n == 7 || n == 8)	BuildV3fSda(n);
+		BuildUnivSda(n);
+	}
+	if (++ c_cFullSdaStack >= CYCLE_FULLSDASTACK) {
+		c_cFullSdaStack = 0;
+		memcpy(&c_fst[FSTID_REPORT], &c_fst[FSTID_WRITE], sizeof(FSDATONE));
+		c_bFstrBridge = true;
+		c_cFullSdaFlow = 0;
+	}
+}
+
+void CArch::BuildAvsSda(int cid)
+{
+	GETPAPER(pPaper);
+	if (cid < (int)pPaper->GetLength()) {
+		PFSDAAVS p = &c_fst[FSTID_WRITE].fss.tc0.h;
+		if (cid != 0)	p = &c_fst[FSTID_WRITE].fss.tc9.h;
+		PDOZEN pDoz = pPaper->GetDozen();
+		GETSCHEME(pSch);
+		int fid = pSch->C2F(pPaper->GetTenor(), cid);
+		WORD wAddr = pDoz->recip[fid].real.svc.t.r.wAddr;
+		if (wAddr == LADD_TRS)	memcpy(&p->trs, &pDoz->recip[fid].real.svc.t.a.t.s.no.a, SIZE_FSDATRS);
+		else if (wAddr == LADD_PIS)	memcpy(&p->pis, &pDoz->recip[fid].real.svc.i.a.t.s.inf.a, SIZE_FSDAPIS);
+		else	memcpy(&p->pau, &pDoz->recip[fid].real.svc.u.a.t.s.alarm.a, SIZE_FSDAPAU);
+	}
+}
+
+void CArch::BuildSivSda(int cid)
+{
+	GETPAPER(pPaper);
+	if (cid < (int)pPaper->GetLength()) {
+		PFSDASIV p = &c_fst[FSTID_WRITE].fss.tc0.s;
+		switch (cid) {
+		case 0 :	p = &c_fst[FSTID_WRITE].fss.tc0.s;	break;
+		case 5 :	p = &c_fst[FSTID_WRITE].fss.cc5.s;	break;
+		default :	p = &c_fst[FSTID_WRITE].fss.tc9.s;	break;
+		}
+		PDOZEN pDoz = pPaper->GetDozen();
+		GETSCHEME(pSch);
+		int fid = pSch->C2F(pPaper->GetTenor(), cid);
+		memcpy(p, &pDoz->recip[fid].real.svf.s.a.t.s.tst, SIZE_FSDASIV);
+	}
+}
+
+void CArch::BuildV3fSda(int cid)
+{
+	GETPAPER(pPaper);
+	if (cid < (int)pPaper->GetLength()) {
+		PFSDAV3F p = &c_fst[FSTID_WRITE].fss.cc1.v;
+		switch (cid) {
+		case 1 :	p = &c_fst[FSTID_WRITE].fss.cc1.v;	break;
+		case 2 :	p = &c_fst[FSTID_WRITE].fss.cc2.v;	break;
+		case 4 :	p = &c_fst[FSTID_WRITE].fss.cc4.v;	break;
+		case 7 :	p = &c_fst[FSTID_WRITE].fss.cc7.v;	break;
+		default :	p = &c_fst[FSTID_WRITE].fss.cc8.v;	break;
+		}
+		PDOZEN pDoz = pPaper->GetDozen();
+		GETSCHEME(pSch);
+		int fid = pSch->C2F(pPaper->GetTenor(), cid);
+		memcpy(p, &pDoz->recip[fid].real.svf.v.a.t.s.ref, SIZE_FSDAV3F);
+	}
+}
+
+void CArch::BuildUnivSda(int cid)
+{
+	GETPAPER(pPaper);
+	if (cid < (int)pPaper->GetLength()) {
+		PFSDAUNIV p = &c_fst[FSTID_WRITE].fss.tc0.u;
+		switch (cid) {
+		case 0 :	p = &c_fst[FSTID_WRITE].fss.tc0.u;	break;
+		case 1 :	p = &c_fst[FSTID_WRITE].fss.cc1.u;	break;
+		case 2 :	p = &c_fst[FSTID_WRITE].fss.cc2.u;	break;
+		case 3 :	p = &c_fst[FSTID_WRITE].fss.cc3.u;	break;
+		case 4 :	p = &c_fst[FSTID_WRITE].fss.cc4.u;	break;
+		case 5 :	p = &c_fst[FSTID_WRITE].fss.cc5.u;	break;
+		case 6 :	p = &c_fst[FSTID_WRITE].fss.cc6.u;	break;
+		case 7 :	p = &c_fst[FSTID_WRITE].fss.cc7.u;	break;
+		case 8 :	p = &c_fst[FSTID_WRITE].fss.cc8.u;	break;
+		default :	p = &c_fst[FSTID_WRITE].fss.tc9.u;	break;
+		}
+		PDOZEN pDoz = pPaper->GetDozen();
+		GETSCHEME(pSch);
+		int fid = pSch->C2F(pPaper->GetTenor(), cid);
+		for (int n = 0; n < 4; n ++) {
+			int did = (int)(pDoz->recip[fid].real.dcul.a.wAddr & 0xf);
+			if (did > 0 && did < 5)
+				memcpy(p->dcu[did - 1], &pDoz->recip[fid].real.dcul.a.t.s.ref, SIZE_FSDADCU);
+		}
+		for (int n = 0; n < 4; n ++) {
+			int did = (int)(pDoz->recip[fid].real.dcur.a.wAddr & 0xf);
+			if (did > 0 && did < 5)
+				memcpy(p->dcu[did - 1 + 4], &pDoz->recip[fid].real.dcur.a.t.s.ref, SIZE_FSDADCU);
+		}
+		memcpy(p->ecu, &pDoz->recip[fid].real.ecu.a.t.s.ref, SIZE_FSDAECU);
+		memcpy(p->hvac, &pDoz->recip[fid].real.hvac.a.t.s.cam, SIZE_FSDAHVAC);
+	}
+}
+
+// RTD로 송신하는 부분
+void CArch::ClosureBridge(PRTDBINFO pRtdr)
+{
+	.
+	.
+	.
+	// 1. 기존 코드: 우선 순위 1: 운행 기록을 먼저 보내고 함수를 종료한다.
+	if (c_auxi.GetRtdNewSheetState()) {
+		PBULKPACK pBulk = c_auxi.GetBulk();
+		memcpy(&pRtdr->t.s.pack.pad.tp.tin.c[0], &pBulk->lbHead, sizeof(LOGBOOKHEAD));
+		pRtdr->t.s.pack.pad.tp.wLength = sizeof(LOGBOOKHEAD);
+		pRtdr->t.s.pack.cItem = RTDITEM_CLOSECURRENT;
+	}
+	else if (GetStillOnRecord((PLOGBOOK)&pRtdr->t.s.pack.pad.tp.tin.c[0])) {		//.f.b.c[0])) {
+		pRtdr->t.s.pack.pad.tp.wLength = sizeof(LOGBOOK);
+		pRtdr->t.s.pack.cItem = RTDITEM_SAVELOGBOOK;
+	}
+	else {
+		// 2. 추가 코드: 우선 순위 2: 추가된 데이터를 보내고 함수를 종료한다.
+		if (c_bFstrBridge || c_cFullSdaFlow != 0) {
+			c_bFstrBridge = false;
+			memset(pRtdr->t.s.pack.pad.tp.tin.c, 0, sizeof(RTDTINE));
+			memcpy(&pRtdr->t.s.pack.pad.tp.tin.c[0], FULLSDA_TEXT, SIZE_FULLSDATEXT);
+			pRtdr->t.s.pack.pad.tp.tin.c[19] = c_cFullSdaFlow + '0';
+			memcpy(&pRtdr->t.s.pack.pad.tp.tin.c[SIZE_FULLSDATEXT], c_fst[FSTID_REPORT].cbs[c_cFullSdaFlow], SIZE_FULLSDABLOCK);
+			pRtdr->t.s.pack.pad.tp.wLength = SIZE_FULLSDATEXT + SIZE_FULLSDABLOCK;
+			pRtdr->t.s.pack.cItem = RTDITEM_SAVEFULLSDASET;
+			if (++ c_cFullSdaFlow >= 2)	c_cFullSdaFlow = 0;
+		}
+		// 3. 기존 코드: 우선 순위가 하나씩 밀림: 우선 순위에 따라 정해진 데이터들을 보내고 함수를 종료한다.
+		// 우선 순위: 검수 결과 -> 고장 코드 -> CDMA REPORT
+		else if (c_bInsprBridge) {
+			c_bInsprBridge = false;
+			memcpy(&pRtdr->t.s.pack.pad.tp.tin.c[0], &c_inspr, sizeof(INSPREPORT));
+			pRtdr->t.s.pack.pad.tp.wLength = sizeof(INSPREPORT);
+			pRtdr->t.s.pack.cItem = RTDITEM_SAVEINSPECT;
+		}
+		else {
+			.
+			.
+			.
+		}
+	}
+}
+
+	1. 데이터 수집부와 송신부는 TCMS 제어 코드와 분리되어 기존 각종 기록들의 수집부와 송신부에
+		나눠 들어가 있으므로 TCMS 제어 부에는 별다른 영향을 끼치지 않는다.
+	2. TCMS CPU는 4코어가 탑재되어 있으므로 위의 코드들이 추가되었다고 CPU 점유율에 크게 영향을
+		미치지 않는다.
+	3. TCMS에서 데이터를 전송하는 부분과 TCMS 제어 부분은 각기 다른 타스크로 가동되고 있지만
+		어느 시점에 어느 타스크가 운영되고 있다는 것을 핀셋처럼 꼭 집어 잡아내기란 불가능하며
+		설계자가 설계한 대로 프로그램이 운행되고 있지않다면 애초부터 남아있는 소스 코드 버그일
+		가능성이 높으나 현재 200량이 운행되고 있는 것을 생각하면 그러한 커다란 버그가 아직
+		남아있다고 보기는 어렵다고 할 수 있다.
+
