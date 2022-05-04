@@ -1,0 +1,58 @@
+
+*Mater sequence
+
+	11.		CalcTime							1.	PackLocal	if TCSTATE_LOCALPACK is 1
+		12.	BusPresent							2.	SendLocal	- 50ms	- clear lcfirm before sending
+		13.	Package	TCSTATE_LOCALPACK = 0 (OWN -> LC)			- 100ms
+		13.9 tcFirm[CAR_HEAD].nHcrInfo = nMasterID
+		14.	ClearFrameWithoutFrameZero-SendBus					- 500ms
+
+	21.		ReceiveLocal
+		22.	LC.sa -> TC(OWN).sa
+
+	31.		ReceiveAllBus
+		32.	CheckBusState
+		33.	Read A/D input
+		34.	PathControl (get hcr.nMasterID)
+		35.	ModeCtrl
+		36.	Look's Check
+
+		23.	Artop's Drive
+		24.	Panto's Drive
+		25.	Ext's Check
+		26.	Door's Control
+
+		37.	Write Output(duty0, duty2)
+
+* At path control, ATC Kdn is train direction to 0
+* At mode control, ATC kup makes HCR-on and turn to active state. ??? this time, Who will control the TCR ???
+
+* Slave sequence
+
+	X.		ReceiveFrame0						1.	PackLocal	if TCSTATE_LOCALPACK is 1
+		11.	CalcTime							2.	SendLocal	- 50ms
+		12.	BusPresent											- 100ms
+		121. CombineZero-ClearFrameWithoutFrameZero
+		122. copy time											- 500ms
+		123. TC(CAR_HEAD).sr -> TC(OWN).sr for Local
+		13.	Package	TCSTATE_LOCALPACK = 0 (OWN -> LC)
+		132. TCSTATE_FRAMEOPEN = 1
+
+	14.		SendBus
+
+	21.		ReceiveLocal
+		22.	LC.sa -> TC(OWN).sa
+
+	31.		ReceiveAllBus
+		32.	CheckBusState
+		33.	Read A/D input
+		34.	PathControl
+		35.	ModeCtrl
+		36.	Look's Check
+
+		23.	Artop's Drive
+		24.	Panto's Drive
+		25.	Ext's Check
+		26.	Door's Control
+
+		37.	Write Output(duty0, duty2)

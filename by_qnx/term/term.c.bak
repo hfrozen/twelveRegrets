@@ -1,0 +1,132 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <dirent.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <string.h>
+#include <errno.h>
+//#include <devctl.h>
+#include <fcntl.h>
+#include <sys/procfs.h>
+
+long filesize(FILE *fp)
+{
+	long int orgpos;
+	long fsize;
+
+	orgpos = ftell(fp);
+	fseek(fp, 0L, SEEK_END);
+	fsize = ftell(fp);
+	fseek(fp, orgpos, SEEK_SET);
+	return fsize;
+}
+
+int FindExec(char* fname)
+{
+	struct dinfo_s {
+		procfs_debuginfo	info;
+		char	pathbuf[1024];
+	};
+	//struct stat fs;
+	//char path[256];
+	char fn[256];
+
+	DIR* dir = opendir("/dev");
+	struct dirent* ent;
+	while ((ent = readdir(dir)) != NULL) {
+		//lstat(fn, &fs);
+		int pid = atoi(ent->d_name);
+		sprintf(fn, "/dev/%d/as", pid);
+		if (pid <= 0)	continue;
+
+		struct dinfo_s dinfo;
+		int file;
+		if ((file = open(fn, O_RDONLY | O_NONBLOCK)) >= 0) {
+			int status = devctl(file, DCMD_PROC_MAPDEBUG_BASE,
+					&dinfo, sizeof(dinfo), NULL);
+			close(file);
+			/*if (status == 0) {
+				MSGLOG("Find:%s\r\n", dinfo.info.path);
+			}*/
+			if (status == 0 && !strcmp(dinfo.info.path, fname))
+				return pid;
+		}
+	}
+	return -1;
+}
+
+int Copy(char* fname)
+{
+	char sbuf[128];
+	char dbuf[128];
+	char buf[1024];
+	int fs, fd, size, tsize;
+
+	sprintf(sbuf, "/nand/test/%s", fname);
+	sprintf(dbuf, "/dos/c/%s", fname);
+	printf("src = %s.\n", sbuf);
+	printf("dest = %s.\n", dbuf);
+	fs = open(sbuf, O_RDONLY);
+	if (fs < 0)	return -1;
+	fd = open(dbuf, O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+	if (fd < 0) {
+		close(fs);
+		return -2;
+	}
+	tsize = 0;
+	do {
+		size = read(fs, buf, 1024);
+		if (size < 0) {
+			close(fs);
+			close(fd);
+			return -3;
+		}
+		tsize += size;
+		int res = write(fd, buf, size);
+		if (res < 0) {
+			close(fs);
+			close(fd);
+			return -4;
+		}
+	} while (size >= 1024);
+	close(fs);
+	close(fd);
+	return tsize;
+}
+
+int main(int argc, char **argv)
+{
+	DIR* dir;
+	struct dirent* ent;
+	struct stat st;
+	char buf[128];
+
+	int usb = open("/dev/hd1t6", O_RDONLY | O_NONBLOCK);
+	if (usb >= 0) {
+		close(usb);
+		printf("find usb\n");
+		dir = opendir("/dos/c");
+		if (dir == NULL)	system("mount -tdos /dev/hd1t6 /dos/c");
+		int filelength = 0;
+		dir = opendir("/nand/test");
+		while ((ent = readdir(dir)) != NULL) {
+			strcpy(buf, ent->d_name);
+			if (buf[0] == 'D') {
+				printf("find %s.\n", buf);
+				sprintf(buf, "/nand/test/%s", ent->d_name);
+				if (stat(buf, &st) < 0)	st.st_size = 0;
+				printf("size %d\n", st.st_size);
+				int res = Copy(buf);
+				printf("copy res = %d.\n", res);
+				filelength ++;
+			}
+		}
+		closedir(dir);
+		if (filelength > 0) {
+			printf("found %d.\n", filelength);
+			system("rm /nand/test/D*");
+		}
+	}
+	else	printf("not found usb\n");
+	return 0;
+}
