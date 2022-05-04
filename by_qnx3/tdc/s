@@ -1,0 +1,21 @@
+mq&
+#waitfor mq
+sleep 2
+cd /h/m
+chmod 777 wm
+wm&
+waitfor wm
+chmod 777 sm
+sm&
+waitfor sm
+chmod 777 pi
+pi&
+waitfor pi
+chmod 777 up
+up&
+waitfor up
+chmod 777 dn
+dn&
+waitfor dn
+chmod 777 tdc
+tdc&
